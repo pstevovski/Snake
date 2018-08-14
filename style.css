@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #222;
+    color: #f5f5f5;
+    overflow: hidden;
+}
+button{
+    outline: none;
+}
+/* Global end */
+.score{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: -50px;
+    font-size: 25px;
+    font-family: "Montserrat Black";
+}
+canvas{
+    display: block;
+    margin: 60px auto;
+    border: 5px solid #000;
+}
+#countdown{
+    font-size: 35px;
+    text-align: center;
+    font-family: "Montserrat Black";
+    opacity: 0;
+    transform: scale(1);
+}
+#countdown.active{
+    animation: countdown 0.95s ease forwards;
+}
+@keyframes countdown{
+    0%{
+        opacity: 0;
+        /* transform: scale(0) */
+    }
+    50%{
+        opacity: 1;
+        /* transform: scale(1) */
+    }
+    100%{
+        opacity: 0;
+        /* transform: scale(0) */
+    }
+}
