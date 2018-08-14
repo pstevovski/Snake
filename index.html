@@ -8,13 +8,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Test countdown -->
+    <!-- Title -->
+    <div class="title">
+        <img src="img/cobra.png" width="150px" alt="Snake Logo">
+        <h1>SNAKE</h1>
+        <button class="levelBtn" id="start">START</button>
+        <div class="levels">
+            <button class="levelBtn" id="easy">Ez-pez</button>
+            <button class="levelBtn" id="normal">Normal</button>
+            <button class="levelBtn" id="loco">Loco</button>
+        </div>
+    </div>
+    <!-- Countdown -->
     <div id="countdown"></div>
-    <button id="start">START</button>
-    <!-- Score -->
-    <div class="score">Score: <span id="score">0</span></div>
-    <!-- The canvas -->
-    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class="container">
+        <!-- Score -->
+        <div class="score">SCORE: <span id="scoreGame">0</span></div>
+        <!-- Highscore -->
+        <div class="highscore">HIGHSCORE: <span id="highscoreGame">0</span></div>
+        <!-- The canvas -->
+        <canvas id="canvas" width="500" height="500"></canvas>
+    </div>
+
+    <!-- Gameover menu -->
+    <div class="gameOver">
+        <h2>GAME OVER !</h2>
+        <p>Your score: <span id="scoreGameOver"></span></p>
+        <p>Highscore: <span id="highscore">0</span></p>
+        <button id="playAgain">Play again ?</button>
+    </div>
+
+    <div class="credits">Icons made by <a href="https://www.flaticon.com/authors/tae-s-yang" title="Tae S Yang">Tae S Yang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
     <!-- Script link -->
     <script src="main.js"></script>
