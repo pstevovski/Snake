@@ -14,6 +14,16 @@ const bg = new Image();
 bg.src = "img/background.png";
 const foodImg = new Image();
 foodImg.src = "img/apple.png";
+const snakeCenterImg = new Image();
+snakeCenterImg.src = "img/snakeHead.png";
+const snakeLeftImg = new Image();
+snakeLeftImg.src = "img/snakeLeft.png";
+const snakeUpImg = new Image();
+snakeUpImg.src = "img/snakeUp.png";
+const snakeRightImg = new Image();
+snakeRightImg.src = "img/snakeRight.png";
+const snakeDownImg = new Image();
+snakeDownImg.src = "img/snakeDown.png";
 
 // Sounds
 const snakeUp = new Audio();
@@ -49,7 +59,7 @@ let food = {
 }
 
 // Countdown before the game starts
-let countdownTime = 6;
+let countdownTime = 4;
 let countdownVar = document.getElementById("countdown");
 document.getElementById("start").addEventListener("click", ()=>{
     document.getElementById("start").style.display = "none";
@@ -61,7 +71,7 @@ let game = setInterval(draw, refresh);
 
 // EASY LEVEL
 document.getElementById("easy").addEventListener("click", ()=>{
-    refresh = 100;
+    refresh = 200;
     easy = true;
     // Hide title
     document.querySelector(".title").style.display = "none";
@@ -73,7 +83,7 @@ document.getElementById("easy").addEventListener("click", ()=>{
 // NORMAL LEVEL
 document.getElementById("normal").addEventListener("click", ()=>{
     normal = true;
-    refresh = 60;
+    refresh = 120;
     // Hide title
     document.querySelector(".title").style.display = "none";
     // Show canvas
@@ -84,7 +94,7 @@ document.getElementById("normal").addEventListener("click", ()=>{
 // CRAZY LEVEL
 document.getElementById("crazy").addEventListener("click", ()=>{
     crazy = true;
-    refresh = 30;
+    refresh = 60;
     // Hide title
     document.querySelector(".title").style.display = "none";
     // Show canvas
@@ -147,8 +157,10 @@ function draw(){
     // Draw the background.
     ctx.drawImage(bg, 0, 0);
 
+    // Draw snakes head
+    ctx.drawImage(snakeCenterImg, snake[0].x, snake[0].y);
     // Draw the snake
-    for(let i = 0; i < snake.length; i++) {
+    for(let i = 1; i < snake.length; i++) {
         ctx.fillStyle = (i == 0) ? "#f5f5f5" : "#e1302a";
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
 
@@ -164,10 +176,22 @@ function draw(){
     let snakeY = snake[0].y;
 
     // Move in certain direction.
-    if( d === "LEFT") snakeX -= box;
-    if( d === "UP") snakeY -= box;
-    if( d === "RIGHT") snakeX += box;
-    if (d === "DOWN") snakeY += box;
+    if( d === "LEFT") {
+        snakeX -= box;
+        ctx.drawImage(snakeLeftImg, snake[0].x, snake[0].y);
+    }
+    if( d === "UP") {
+        snakeY -= box;
+        ctx.drawImage(snakeUpImg, snake[0].x, snake[0].y);
+    }
+    if( d === "RIGHT") {
+        snakeX += box;
+        ctx.drawImage(snakeRightImg, snake[0].x, snake[0].y);
+    }
+    if (d === "DOWN") {
+        snakeY += box;
+        ctx.drawImage(snakeDownImg, snake[0].x, snake[0].y);
+    }
 
     // Snake eats food.
     if( snakeX == food.x && snakeY == food.y) {
