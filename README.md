@@ -1,6 +1,7 @@
 # Snake - The good old snake game.
 
 Todo in next commit:
-- Set difficulty (easy, normal, hard);
 - Fix background;
-- Change color to darker green;
+- Add info;
+- Add github link;
+- Add exit button to game over function that reloads the page.
