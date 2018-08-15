@@ -191,12 +191,10 @@ canvas{
     font-family: "Montserrat Regular";
     font-size: 12px;
 }
-.info i {
-    font-family: "Ionicons";
-    color:#f2f2f2;
-    font-size: 35px;
-    transition: 0.2s ease;
+.info img{
+    transition: 0.3s ease;
+    transform: scale(0.9)
 }
-.info i:hover{
-    color: #1be936;
+.info img:hover{
+    transform: rotate(15deg) scale(1);
 }
