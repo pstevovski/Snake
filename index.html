@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
     <!-- Title -->
     <div class="title">
-        <img src="img/cobra.png" width="150px" alt="Snake Logo">
+        <img src="img/cobra.png" width="200px" alt="Snake Logo">
         <h1>SNAKE</h1>
         <button class="levelBtn" id="start">START</button>
         <div class="levels">
-            <button class="levelBtn" id="easy">Ez-pez</button>
+            <button class="levelBtn" id="easy">Easy</button>
             <button class="levelBtn" id="normal">Normal</button>
-            <button class="levelBtn" id="loco">Loco</button>
+            <button class="levelBtn" id="crazy">Crazy</button>
         </div>
     </div>
     <!-- Countdown -->
@@ -29,17 +30,23 @@
         <!-- The canvas -->
         <canvas id="canvas" width="500" height="500"></canvas>
     </div>
-
     <!-- Gameover menu -->
     <div class="gameOver">
         <h2>GAME OVER !</h2>
         <p>Your score: <span id="scoreGameOver"></span></p>
         <p>Highscore: <span id="highscore">0</span></p>
         <button id="playAgain">Play again ?</button>
+        <button id="closeGame" title="Retruns you to the start.">Exit</button>
     </div>
 
+    <!-- Credits for logo image -->
     <div class="credits">Icons made by <a href="https://www.flaticon.com/authors/tae-s-yang" title="Tae S Yang">Tae S Yang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
+    <!-- Info & github link -->
+    <div class="info">
+        <p>Use the arrow keys to move the snake. Eat the apples and gain points.</p>
+        <a href="https://github.com/pecko95/Snake" target="_blank"><i class="ion-social-github"></i></a>
+    </div>
     <!-- Script link -->
     <script src="main.js"></script>
     <script></script>
