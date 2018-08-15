@@ -29,6 +29,11 @@ snakeDead.src = "audio/dead.mp3";
 const eat = new Audio();
 eat.src = "audio/eat.mp3";
 
+// Booleans
+let easy;
+let normal;
+let loco;
+
 // Snake
 let snake = [];
 
@@ -43,10 +48,43 @@ let food = {
     y : Math.floor(Math.random() * 20) * box,
 }
 
-// Countdown before game starts
+// Countdown before the game starts
 let countdownTime = 6;
 let countdownVar = document.getElementById("countdown");
 document.getElementById("start").addEventListener("click", ()=>{
+    document.getElementById("start").style.display = "none";
+    document.querySelector(".levels").style.display = "flex";
+})
+
+let refresh = 100;
+let game = setInterval(draw, refresh);
+
+// EASY LEVEL
+document.getElementById("easy").addEventListener("click", ()=>{
+    refresh = 100;
+    easy = true;
+    // Hide title
+    document.querySelector(".title").style.display = "none";
+    // Show canvas
+    cvs.style.display = "block";
+    countdown();
+})
+
+// NORMAL LEVEL
+document.getElementById("normal").addEventListener("click", ()=>{
+    normal = true;
+    refresh = 60;
+    // Hide title
+    document.querySelector(".title").style.display = "none";
+    // Show canvas
+    cvs.style.display = "block";
+    countdown();
+})
+
+// CRAZY LEVEL
+document.getElementById("crazy").addEventListener("click", ()=>{
+    crazy = true;
+    refresh = 30;
     // Hide title
     document.querySelector(".title").style.display = "none";
     // Show canvas
@@ -63,6 +101,7 @@ function countdown(){
         }, 950);
         countdownVar.innerHTML = "GET READY: " +countdownTime;
     } else if (countdownTime == 0) {
+        game = setInterval(draw, refresh);
         countdownVar.style.display = "none";
         scoreContainer.style.display = "block";
         highscoreContainer.style.display = "block";
@@ -133,7 +172,13 @@ function draw(){
     // Snake eats food.
     if( snakeX == food.x && snakeY == food.y) {
         eat.play();
-        score += 50;
+        if ( easy == true) {
+            score += 50;
+        } else if ( normal == true ){
+            score += 100;
+        } else if ( crazy = true ){
+            score +=200;
+        }
         scoreDisplay.innerHTML = score;
         food = {
             x : Math.floor(Math.random() * 20) * box,
@@ -160,7 +205,6 @@ function draw(){
             }
         }
     }
-
     // Detect collision
     if( snakeX < -40|| snakeX > 500 || snakeY < -40 || snakeY > 500|| collision(newHead, snake)) {
         snakeDead.play();
@@ -173,13 +217,18 @@ function draw(){
 
 // Game over
 function gameOver(){
+    // Stop the sound for snake dead from looping over and over again.
+    setTimeout(() => {
+        snakeDead.pause();
+        snakeDead.currentTime = 0;
+    }, 500);
     // Hide the game.
     document.querySelector(".container").style.display = "none";
     // Display game over menu
     document.querySelector(".gameOver").style.display = "flex";
     // Display current score.
     document.getElementById("scoreGameOver").innerHTML = score;
-
+    
     document.getElementById("highscore").innerHTML = highscore;
     // Display highscore.
     if ( score > highscore) {
@@ -207,7 +256,10 @@ document.getElementById("playAgain").addEventListener("click", ()=>{
     }
     // Clear the direction
     d = " ";
-    game = setInterval(draw, 50);
+    game = setInterval(draw, refresh);
 })
 
-let game = setInterval(draw, 50);
+// Exit game
+document.getElementById("closeGame").addEventListener("click", ()=>{
+    location.reload();
+})
