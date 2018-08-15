@@ -1,3 +1,5 @@
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+
 *{
     margin: 0;
     padding: 0;
@@ -14,8 +16,7 @@ button{
 }
 /* Global end */
 .container{
-    background-color: #fff;
-    width: 510px;
+    width: 500px;
     margin: 0 auto;
     position: relative;
 }
@@ -57,7 +58,7 @@ button{
 }
 .title h1{
     font-size: 80px;
-    color: #41c300;
+    color: #f2f2f2;
     font-family: "Montserrat Black";
     margin: 10px 0;
     display: flex;
@@ -81,6 +82,10 @@ button{
     transition: 0.2s ease;
     background-color: #f5f5f5;
 }
+.levelBtn:hover{
+    background-color: #38a004;
+    color: #fff;
+}
 .levels{
     display: none;
 }
@@ -88,13 +93,12 @@ button{
     margin: 0 5px;
 }
 .title #start:hover{
-    background-color: #41c300;
+    background-color: #38a004;
     color: #fff;
 }
 canvas{
     display: none;
     margin: 60px auto;
-    border: 5px solid #000;
 }
 #countdown{
     z-index: -2;
@@ -116,15 +120,12 @@ canvas{
 @keyframes countdown{
     0%{
         opacity: 0;
-        /* transform: scale(0) */
     }
     50%{
         opacity: 1;
-        /* transform: scale(1) */
     }
     100%{
         opacity: 0;
-        /* transform: scale(0) */
     }
 }
 
@@ -153,7 +154,7 @@ canvas{
     font-family: "Montserrat Black";
     letter-spacing: 2px;
 }
-#playAgain{
+#playAgain, #closeGame{
     padding: 5px;
     border: none;
     border-radius: 2px;
@@ -165,7 +166,7 @@ canvas{
     width: 110px;
     transition: 0.2s ease;
 }
-#playAgain:hover{
+#playAgain:hover, #closeGame:hover{
     background-color: #fff;
     color: #333;
 }
@@ -180,4 +181,21 @@ canvas{
 .credits a{
     color: #41c300;
     text-decoration: none;
+}
+.info {
+    width: 200px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-family: "Montserrat Regular";
+    font-size: 12px;
+}
+.info i {
+    color:#f2f2f2;
+    font-size: 35px;
+    transition: 0.2s ease;
+}
+.info i:hover{
+    color: #1be936;
 }
