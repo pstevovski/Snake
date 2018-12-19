@@ -14,29 +14,26 @@
         <img src="img/cobra.png" width="200px" alt="Snake Logo">
         <h1>SNAKE</h1>
         <button class="levelBtn" id="start">START</button>
-        <div class="levels">
-            <button class="levelBtn" id="easy">Easy</button>
-            <button class="levelBtn" id="normal">Normal</button>
-            <button class="levelBtn" id="crazy">Crazy</button>
-        </div>
     </div>
-    <!-- Countdown -->
-    <div id="countdown"></div>
+
     <div class="container">
         <!-- Score -->
-        <div class="score">SCORE: <span id="scoreGame">0</span></div>
+        <div class="score">SCORE: <span id="score">0</span></div>
+
         <!-- Highscore -->
-        <div class="highscore">HIGHSCORE: <span id="highscoreGame">0</span></div>
+        <div class="highscore">HIGHSCORE: <span id="highscore">0</span></div>
+
         <!-- The canvas -->
         <canvas id="canvas" width="500" height="500"></canvas>
     </div>
+    
     <!-- Gameover menu -->
     <div class="gameOver">
         <h2>GAME OVER !</h2>
         <p>Your score: <span id="scoreGameOver"></span></p>
-        <p>Highscore: <span id="highscore">0</span></p>
+        <p>Highscore: <span id="highscoreGameOver">0</span></p>
         <button id="playAgain">Play again ?</button>
-        <button id="closeGame" title="Retruns you to the start.">Exit</button>
+        <button id="closeGame" title="Exit game">Exit</button>
     </div>
 
     <!-- Credits for logo image -->
@@ -47,8 +44,8 @@
         <p>Use the arrow keys to move the snake. Eat the apples and gain points.</p>
         <a href="https://github.com/pecko95/Snake" target="_blank"><img src="img/github.png" alt="Github"></a>
     </div>
+
     <!-- Script link -->
-    <script src="main.js"></script>
-    <script></script>
+    <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>
