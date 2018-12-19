@@ -1,11 +1,14 @@
+import { food } from "./food.js";
+import { snake} from "./snake.js";
+
 class UI {
     constructor() {
         this.start = document.querySelector("#start");
         this.mainMenu = document.querySelector(".title");
         this.cvs = document.querySelector("#canvas");
         this.ctx = this.cvs.getContext("2d");
-        this.scoreDisplay = document.querySelector("scoreGame");
-        this.highscoreDisplay = document.querySelector("#highscoreGame");
+        this.scoreDisplay = document.querySelector("#score");
+        this.highscoreDisplay = document.querySelector("#highscore");
         this.cWidth = this.cvs.width;
         this.cHeight = this.cvs.height;
 
@@ -31,6 +34,15 @@ class UI {
         this.scoreDisplay.textContent = this.score;
         this.update = null;
         this.gameOver.style.display = "none";
+
+        // New food position
+        food.newFoodPos();
+
+        // New snake position
+        snake.body[0] = {
+            x: Math.floor(Math.random() * 20) * snake.box,
+            y: Math.floor(Math.random() * 20) * snake.box
+        }
     }
 
     // Display game over menu

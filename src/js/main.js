@@ -1,5 +1,7 @@
 import { ui } from "./ui.js";
 import { graphics, sfx } from "./assets.js";
+import { food } from "./food.js";
+import { snake } from "./snake.js";
 
 const start = document.querySelector("#start");
 
@@ -81,14 +83,16 @@ function draw() {
         }
         
         // If the snake collides with it self, end game
-        if(snake.body[i].x === newPos.x && snake.body[i].y === newPos.y) {
+        if(newPos.x === snake.body[i].x && newPos.y === snake.body[i].y) {
             ui.endgame();
+            return;
         }
     }
 
     // Teleport snake from one side to other when it reaches the walls
-    if(snakeX < ui.cWidth || snakeX > ui.cWidth || snakeY < ui.cHeight || snakeY > ui.cHeight) {
+    if(headX <= -20|| headX >= 520 || headY <= -20 || headY >= 520) {
         ui.endgame();
+        return;
     }
 
     snake.body.unshift(newPos);
@@ -98,3 +102,7 @@ function draw() {
 
 // Play again
 document.querySelector("#playAgain").addEventListener("click", startGame);
+
+// Move the snake
+document.addEventListener("keydown", snake.movement.bind(snake));
+document.addEventListener("keyup", snake.clearMovement.bind(snake));
