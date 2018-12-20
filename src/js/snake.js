@@ -5,6 +5,7 @@ class Snake {
         this.d = null;
         this.box = 25;
         this.body = [];
+        this.alive = true;
 
         this.body[0] = {
             x: 9 * this.box,
@@ -15,19 +16,21 @@ class Snake {
     // Snake movement
     movement(e) {
         e = e || event;
-
-        if(e.keyCode === 37) {
-            this.d = "LEFT";
-            sfx.snakeLeft.play();
-        } else if (e.keyCode === 38) {
-            this.d = "UP";
-            sfx.snakeUp.play();
-        } else if (e.keyCode === 39) {
-            this.d = "RIGHT";
-            sfx.snakeRight.play();
-        } else if (e.keyCode === 40) {
-            this.d = "DOWN";
-            sfx.snakeDown.play();
+        // If snake is alive, move and play sounds
+        if(this.alive) {
+            if(e.keyCode === 37 && this.d !== "RIGHT") {
+                this.d = "LEFT";
+                sfx.snakeLeft.play();
+            } else if (e.keyCode === 38 && this.d !== "DOWN") {
+                this.d = "UP";
+                sfx.snakeUp.play();
+            } else if (e.keyCode === 39 && this.d !== "LEFT") {
+                this.d = "RIGHT";
+                sfx.snakeRight.play();
+            } else if (e.keyCode === 40 && this.d !== "UP") {
+                this.d = "DOWN";
+                sfx.snakeDown.play();
+            }
         }
     }
     

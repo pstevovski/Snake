@@ -1,5 +1,5 @@
 import { food } from "./food.js";
-import { snake} from "./snake.js";
+import { snake } from "./snake.js";
 
 class UI {
     constructor() {
@@ -33,6 +33,15 @@ class UI {
         this.score = 0;
         this.scoreDisplay.textContent = this.score;
         this.update = null;
+        snake.body = [];
+        snake.alive = true;
+
+        // Display score and highscore
+        document.querySelector(".score").style.display = "block";
+        document.querySelector(".highscore").style.display = "block";
+        this.highscoreDisplay.textContent = this.highscore;
+
+        // Hide game over menu
         this.gameOver.style.display = "none";
 
         // New food position
@@ -49,13 +58,18 @@ class UI {
     endgame() {
         // Cancel the animation frames
         cancelAnimationFrame(this.update);
+        
+        // Snake is dead
+        snake.alive = false;
 
+        // Display game over menu
         this.gameOver.style.display = "block";
 
         // Update highscore (if current score is bigger)
         if(this.score > this.highscore) {
             this.highscore = localStorage.setItem("snake-highscore", this.score);
         }
+        // Get highscore from local storage
         this.highscore = localStorage.getItem("snake-highscore");
 
         // Display the current game score and highscore
