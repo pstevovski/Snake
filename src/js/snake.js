@@ -6,11 +6,6 @@ class Snake {
         this.box = 25;
         this.body = [];
         this.alive = true;
-
-        this.body[0] = {
-            x: 9 * this.box,
-            y: 10 * this.box
-        }
     }
 
     // Snake movement

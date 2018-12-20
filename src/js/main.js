@@ -79,7 +79,7 @@ function draw() {
             food.newFoodPos();
         }
 
-        // If the snake collides with it self, end game
+        // If the snake collides with it self, end game -> BUG
         if(newPos.x === snake.body[i].x && newPos.y === snake.body[i].y) {
             sfx.snakeDead.play();
             ui.endgame();
@@ -89,12 +89,14 @@ function draw() {
 
     // Teleport snake from one side to other when it reaches the walls
     if(headX <= -20 || headX >= 520 || headY <= -20 || headY >= 520) {
+        sfx.snakeDead.play();
         ui.endgame();
         return;
     }
-    ui.update = requestAnimationFrame(draw);
 
     snake.body.unshift(newPos);
+    
+    ui.update = requestAnimationFrame(draw);
 }
 
 // Start game

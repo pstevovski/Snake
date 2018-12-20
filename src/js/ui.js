@@ -63,7 +63,7 @@ class UI {
         snake.alive = false;
 
         // Display game over menu
-        this.gameOver.style.display = "block";
+        this.gameOver.style.display = "flex";
 
         // Update highscore (if current score is bigger)
         if(this.score > this.highscore) {
