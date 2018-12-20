@@ -3,11 +3,6 @@ import { graphics, sfx } from "./assets.js";
 import { food } from "./food.js";
 import { snake } from "./snake.js";
 
-const start = document.querySelector("#start");
-
-// Start game
-start.addEventListener("click", startGame);
-
 function startGame() {
     // Hide the main menu
     ui.mainMenu.style.display = "none";
@@ -31,8 +26,11 @@ function draw() {
 
     // Paint the snake
     for(let i = 0; i < snake.body.length; i++) {
-        ui.ctx.fillStyle = ( i === 0) ? "#fff" : "#e1302a";
+        ui.ctx.fillStyle = (i === 0) ? "#fff" : "#e1302a";
         ui.ctx.fillRect(snake.body[i].x, snake.body[i].y, snake.box, snake.box);
+
+        ui.ctx.strokeStyle = "#111111";
+        ui.ctx.strokeRect(snake.body[i].x, snake.body[i].y, snake.box, snake.box);
     }
 
     // Draw the food
@@ -64,7 +62,6 @@ function draw() {
         if(ui.score > ui.highscore) {
             ui.highscoreDisplay = ui.score;
         }
-
     } else {
         snake.body.pop();
     };
@@ -75,33 +72,39 @@ function draw() {
         y: headY
     };
 
-    // If the food spawns in the same spot where snake currently is
     for(let i = 0; i < snake.body.length; i++) {
+        // If the food spawns in the same spot where snake currently is
         if(food.position.x === snake.body[i].x && food.position.y === snake.body[i].y) {
             // Create a new food at new position
             food.newFoodPos();
         }
-        
+
         // If the snake collides with it self, end game
         if(newPos.x === snake.body[i].x && newPos.y === snake.body[i].y) {
+            sfx.snakeDead.play();
             ui.endgame();
             return;
         }
     }
 
     // Teleport snake from one side to other when it reaches the walls
-    if(headX <= -20|| headX >= 520 || headY <= -20 || headY >= 520) {
+    if(headX <= -20 || headX >= 520 || headY <= -20 || headY >= 520) {
         ui.endgame();
         return;
     }
+    ui.update = requestAnimationFrame(draw);
 
     snake.body.unshift(newPos);
-
-    ui.update = requestAnimationFrame(draw);
 }
+
+// Start game
+document.querySelector("#start").addEventListener("click", startGame);
 
 // Play again
 document.querySelector("#playAgain").addEventListener("click", startGame);
+
+// Exit game
+document.querySelector("#closeGame").addEventListener("click", () => location.reload());
 
 // Move the snake
 document.addEventListener("keydown", snake.movement.bind(snake));
